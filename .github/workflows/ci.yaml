@@ -23,7 +23,7 @@ jobs:
         pip install tox
 
     - name: Run tests with tox
-      run: tox -e py${{ matrix.python-version }} -- --cov=django_i18n_lint --cov-report=xml
+      run: tox -e py${{ matrix.python-version }}
 
     - name: List files
       run: ls -la
