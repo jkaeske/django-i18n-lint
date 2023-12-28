@@ -25,16 +25,16 @@ jobs:
     - name: Run tests with tox
       run: tox -e py${{ matrix.python-version }}
 
-    - name: List files
-      run: ls -la
-
-    - name: Check coverage.xml
+    - name: Check for coverage.xml file
       run: |
         if [ -f coverage.xml ]; then
           echo "coverage.xml exists at $(pwd)"
         else
           echo "coverage.xml does not exist in $(pwd)"
+          ls -la  # List files to debug
+          exit 1  # Fail the job if coverage.xml does not exist
         fi
+      shell: bash
 
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v3

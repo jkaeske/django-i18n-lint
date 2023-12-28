@@ -1,5 +1,7 @@
 # Django i18n Lint
 
+[![codecov](https://codecov.io/gh/jkaeske/django-i18n-lint/graph/badge.svg?token=8t1WWUxxav)](https://codecov.io/gh/jkaeske/django-i18n-lint)
+
 A simple script to find non-i18n text in a Django template.
 
 Note: Since Django 3.1 the template tag was update from `{% trans "" %}` to `{% translate "" %}` and from `{% blocktrans "" %}` to `{% blocktranslate "" %}`. 
