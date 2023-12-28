@@ -29,11 +29,11 @@ def location(str, pos):
 # Things that are OK:
 GOOD_STRINGS = re.compile(
     r"""
-         (
-          # django comment
-       {%\ comment\ %}.*?{%\ endcomment\ %}
+        (
+        # django comment
+        {%\ comment\ %}.*?{%\ endcomment\ %}
 
-         # already translated text (until Django 3.0)
+        # already translated text (until Django 3.0)
         |{%\ ?blocktrans.*?{%\ ?endblocktrans\ ?%}
 
         # already translated text (Django 3.1+)
