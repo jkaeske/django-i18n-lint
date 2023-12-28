@@ -23,7 +23,7 @@ jobs:
         pip install tox
 
     - name: Run tests with tox
-      run: tox -e py${{ matrix.python-version }}
+      run: tox -e py${{ matrix.python-version }} --cov=django_i18n_lint --cov-report html
 
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v3
