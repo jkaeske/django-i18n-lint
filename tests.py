@@ -2,12 +2,12 @@
 Unittests for django-template-i18n-lint.
 """
 import unittest
-import django_template_i18n_lint
+import django_i18n_lint
 
 
 def _known_good_output(input_string, expected_output):
     def test(self):
-        actual_output = list(django_template_i18n_lint.non_translated_text(input_string))
+        actual_output = list(django_i18n_lint.non_translated_text(input_string))
         self.assertEqual(actual_output, expected_output)
     test.__doc__ = "Input string {0} should give output of {1}".format(
         repr(input_string[:30]), repr(expected_output)[:30])
@@ -28,6 +28,9 @@ class DjangoTemplateI18nLintTestCase(unittest.TestCase):
     testBlocktransOK1 = _known_good_output("<b>{% blocktrans %}Foo{% endblocktrans %}</b>", [])
     testBlocktransOK2 = _known_good_output("<b>{% blocktrans with var=bar %}Foo{% endblocktrans %}</b>", [])
     testBlocktransOK3 = _known_good_output("<b>{% blocktrans with var as bar %}Foo{% endblocktrans %}</b>", [])
+    testBlocktranslateOK1 = _known_good_output("<b>{% blocktranslate %}Foo{% endblocktranslate %}</b>", [])
+    testBlocktranslateOK2 = _known_good_output("<b>{% blocktranslate with var=bar %}Foo{% endblocktranslate %}</b>", [])
+    testBlocktranslateOK3 = _known_good_output("<b>{% blocktranslate with var as bar %}Foo{% endblocktranslate %}</b>", [])
     testDjangoCustomTag = _known_good_output("{% load foo %}", [])
     testJS = _known_good_output("Foo<script>alert('Foo');</script>Bar", [(1, 1, 'Foo'), (1, 34, 'Bar')])
     testDjangoVar = _known_good_output("Foo{{ bar }}Baz", [(1, 1, 'Foo'), (1, 13, 'Baz')])

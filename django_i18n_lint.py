@@ -32,8 +32,11 @@ GOOD_STRINGS = re.compile(
           # django comment
        ( {%\ comment\ %}.*?{%\ endcomment\ %}
 
-         # already translated text
+         # already translated text (until Django 3.0)
         |{%\ ?blocktrans.*?{%\ ?endblocktrans\ ?%}
+
+        # already translated text (Django 3.1+)
+        |{%\ ?blocktranslate.*?{%\ ?endblocktranslate\ ?%}
 
          # any django template function (catches {% trans ..) aswell
         |{%.*?%}
@@ -112,7 +115,7 @@ GOOD_STRINGS = re.compile(
 # Stops us matching non-letter parts, e.g. just hypens, full stops etc.
 LETTERS = re.compile(r"[^\W\d_]")
 
-LEADING_TRAILING_WHITESPACE = re.compile("(^\W+|\W+$)")
+LEADING_TRAILING_WHITESPACE = re.compile(r"(^\W+|\W+$)")
 
 def split_into_good_and_bad(template):
     for index, match in enumerate(GOOD_STRINGS.split(template)):
@@ -169,12 +172,12 @@ def replace_strings(filename, overwrite=False, force=False, accept=[]):
                 elif lineno in ignore_lines:
                     full_text_lines.append(message)
                 elif force:
-                    full_text_lines.append('{% trans "'+message.replace('"', '\\"')+'" %}')
+                    full_text_lines.append('{% translate "'+message.replace('"', '\\"')+'" %}')
 
                 else:
                     change = raw_input("Make %r translatable? [Y/n] " % message)
                     if change == 'y' or change == "":
-                        full_text_lines.append('{% trans "'+message.replace('"', '\\"')+'" %}')
+                        full_text_lines.append('{% translate "'+message.replace('"', '\\"')+'" %}')
                     else:
                         full_text_lines.append(message)
 

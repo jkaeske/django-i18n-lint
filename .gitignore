@@ -4,3 +4,5 @@
 .tox
 .coverage
 dist/*
+.venv
+.env

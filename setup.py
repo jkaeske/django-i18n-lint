@@ -3,15 +3,14 @@
 from setuptools import setup
 
 setup(
-    name="django-template-i18n-lint",
+    name="django-i18n-lint",
     version="1.2.0",
     author="Rory McCann",
     author_email="rory@technomancy.org",
-    py_modules=['django_template_i18n_lint'],
+    py_modules=['django_i18n_lint'],
     license='GPLv3+',
     url='http://www.technomancy.org/python/django-template-i18n-lint/',
-    description='Lint tool to find non-trans/blocktrans text in django templates',
-    test_suite='tests',
+    description='Lint tool to find untranslated text in django templates',
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
@@ -21,14 +20,11 @@ setup(
         'Intended Audience :: Developers',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.3',
+        'Programming Language :: Python :: 3.10',
     ],
     entry_points={
         'console_scripts': [
-            'django-template-i18n-lint = django_template_i18n_lint:main',
+            'django-i18n-lint = django_i18n_lint:main',
         ]
     },
 )
