@@ -1,10 +1,11 @@
 # Django i18n Lint
 
 [![codecov](https://codecov.io/gh/jkaeske/django-i18n-lint/graph/badge.svg?token=8t1WWUxxav)](https://codecov.io/gh/jkaeske/django-i18n-lint)
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/jkaeske/django-i18n-lint/master.svg)](https://results.pre-commit.ci/latest/github/jkaeske/django-i18n-lint/master
 
 A simple script to find non-i18n text in a Django template.
 
-Note: Since Django 3.1 the template tag was update from `{% trans "" %}` to `{% translate "" %}` and from `{% blocktrans "" %}` to `{% blocktranslate "" %}`. 
+Note: Since Django 3.1 the template tag was update from `{% trans "" %}` to `{% translate "" %}` and from `{% blocktrans "" %}` to `{% blocktranslate "" %}`.
 The old `trans` versions are still recognized by the linter but the string wrapping will change the string to the new `translate` version.
 
 ## Usage
